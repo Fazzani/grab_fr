@@ -1,1 +1,3 @@
-"# grab_fr" 
+# grab_fr
+
+Webgrabbing frensh channels
