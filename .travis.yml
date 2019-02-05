@@ -17,6 +17,7 @@ env:
   - WEBGRAB_FILENAME=configs/fr_telerama.be.xml
   - WEBGRAB_FILENAME=configs/fr_canal.xml
   - WEBGRAB_FILENAME=configs/fr_canal2.xml
+  - WEBGRAB_FILENAME=configs/fr_canal3.xml
 before_script:
   - export TZ=Europe/London
 script:
