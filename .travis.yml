@@ -25,7 +25,7 @@ script:
 - cd grab
 - docker run -it --rm -v "${PWD}/${WEBGRAB_FILENAME}:/config/WebGrab++.config.xml" -v "${PWD}:/data" -e "DEBUG=false" -e "TZ=Europe/London" synker/webgraboneshot:latest
 - git add --all && (git commit -m "Webgrab ${WEBGRAB_FILENAME} from grab2" || echo "No changes to commit")
-- (git pull && git push ) || (sleep 100 && git pull && git push)
+- git -X ours pull && git push
 
 jobs:
   include:
@@ -37,7 +37,7 @@ jobs:
     - docker pull synker/xmltv_merge:latest
     - docker run -it -v "${PWD}:/work" -e GITHUB_API_TOKEN=${GITHUB_API_TOKEN} synker/xmltv_merge:0.0.3 /bin/bash -c "dos2unix docker/merge.sh && chmod +x docker/merge.sh && apt-get install zip -y && docker/merge.sh '*.xmltv'"
     - git add merge.tar.gz && git add merge.zip && git commit -m "compression, merging xmltv files and pushing them to GITHUB. Triggred by $TRAVIS_EVENT_TYPE"
-    - git pull && git push
+    - git -X ours pull && git push
   - stage: Update readme
     name: Update readme
     before_script:
@@ -51,7 +51,7 @@ jobs:
       - curl -s -H "Content-Type:application/json" -XPOST elastic.synker.ovh/missingepgchannels/report -d @./out/check_missing_programs.json
       - ./scripts/update_missed_channels.sh ./out/check_channels.json ./out/check_missing_programs.json
       - git add ./out/*.json && git commit -m "Updating missed programs"
-      - git push origin2 HEAD:master
+      - git -X ours pull origin2 HEAD:master && git push origin2 HEAD:master
 
 notifications:
   email:
