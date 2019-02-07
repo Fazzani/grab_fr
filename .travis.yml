@@ -51,7 +51,8 @@ jobs:
       - curl -s -H "Content-Type:application/json" -XPOST elastic.synker.ovh/missingepgchannels/report -d @./out/check_missing_programs.json
       - ./scripts/update_missed_channels.sh ./out/check_channels.json ./out/check_missing_programs.json
       - git add ./out/*.json && git commit -m "Updating missed programs"
-      - git pull -X ours origin2 HEAD:master && git push origin2 HEAD:master
+      - git pull -X ours origin2 HEAD:master > /dev/null 2>&1 
+      - git push origin2 HEAD:master
 
 notifications:
   email:
