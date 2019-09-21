@@ -14,10 +14,10 @@ branches:
 if: (commit_message =~ ^daily OR type = "cron") AND (branch = master)
 env:
   - WEBGRAB_FILENAME=configs/fr_telerama.xml
-  #- WEBGRAB_FILENAME=configs/fr_telerama.be.xml
-  #- WEBGRAB_FILENAME=configs/fr_canal.xml
+  - WEBGRAB_FILENAME=configs/fr_telerama.be.xml
+  - WEBGRAB_FILENAME=configs/fr_canal.xml
   - WEBGRAB_FILENAME=configs/fr_canal2.xml
-  #- WEBGRAB_FILENAME=configs/fr_canal3.xml
+  - WEBGRAB_FILENAME=configs/fr_canal3.xml
 before_script:
   - export TZ=Europe/London
 script:
@@ -41,7 +41,7 @@ jobs:
       [[ ! -z $(git status -uno --porcelain) ]] \
       && git status \
       && git add merge.tar.gz merge.zip \
-      && git commit -m "compression, merging xmltv files and pushing them to GITHUB. Triggred by $TRAVIS_EVENT_TYPE" \
+      && git commit -m "compression, merging xmltv files and pushing them to GITHUB. Triggred by $TRAVIS_EVENT_TYPE"
       
       git pull -X ours > /dev/null 2>&1 \
       && git push
