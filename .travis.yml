@@ -1,9 +1,6 @@
 language: generic
-sudo: required
 cache: false
 install: skip
-matrix:
-  fast_finish: true
 services:
   - docker
 git:
