@@ -23,7 +23,7 @@ before_script:
 script:
 - git clone --depth 1 https://${GITHUB_API_TOKEN}@github.com/fazzani/grab.git > /dev/null 2>&1
 - cd grab
-- docker run -it --rm -v --mac-address="12:34:de:b0:6b:61" "${PWD}/${WEBGRAB_FILENAME}:/config/WebGrab++.config.xml" -v "${PWD}:/data" -e "DEBUG=false" -e "TZ=Europe/London" synker/webgraboneshot:latest
+- docker run -it --rm --mac-address="12:34:de:b0:6b:61" -v "${PWD}/${WEBGRAB_FILENAME}:/config/WebGrab++.config.xml" -v "${PWD}:/data" -e "DEBUG=false" -e "TZ=Europe/London" synker/webgraboneshot:latest
 - git add --all && (git commit -m "Webgrab ${WEBGRAB_FILENAME} from grab2" || echo "No changes to commit")
 - git pull -X ours && git push
 
