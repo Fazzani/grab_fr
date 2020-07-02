@@ -26,7 +26,7 @@ script:
 - cd grab
 - docker run -it --rm --hostname test --mac-address="12:34:de:b0:6b:61" -v "${PWD}/${WEBGRAB_FILENAME}:/config/WebGrab++.config.xml" -v "${PWD}:/data" -e "DEBUG=false" -e "TZ=Europe/London" synker/webgraboneshot:latest
 - git add --all && (git commit -m "Webgrab ${WEBGRAB_FILENAME} from grab2" || echo "No changes to commit")
-- git config --global http.postBuffer 157286400
+- git config --global http.postBuffer 524288000
 - git pull -X ours && git push -f
 
 jobs:
@@ -46,7 +46,7 @@ jobs:
       && git commit -m "compression, merging xmltv files and pushing them to GITHUB. Triggred by $TRAVIS_EVENT_TYPE"
       
       git pull -X ours > /dev/null 2>&1 && \
-      git config --global http.postBuffer 157286400 && \
+      git config --global http.postBuffer 524288000 && \
       git push -f
   - stage: Update readme
     name: Update readme
@@ -61,7 +61,7 @@ jobs:
       #- curl -s -H "Content-Type:application/json" -XPOST elastic.synker.ovh/missingepgchannels/report -d @./out/check_missing_programs.json
       - ./scripts/update_missed_channels.sh ./out/check_channels.json ./out/check_missing_programs.json
       - git add ./out/*.json && git commit -m "Updating missed programs"
-      - git config --global http.postBuffer 157286400 && git push origin2 HEAD:master -f
+      - git config --global http.postBuffer 524288000 && git push origin2 HEAD:master -f
 
 notifications:
   email:
