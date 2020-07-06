@@ -17,7 +17,6 @@ env:
   - WEBGRAB_FILENAME=configs/programme_tv3.xml
   - WEBGRAB_FILENAME=configs/programme_tv4.xml
   - WEBGRAB_FILENAME=configs/fr_canal.xml
-  - WEBGRAB_FILENAME=configs/fr_canal2.xml
   - WEBGRAB_FILENAME=configs/fr_canal3.xml
 before_script:
   - export TZ=Europe/London
