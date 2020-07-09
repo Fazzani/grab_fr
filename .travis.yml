@@ -4,7 +4,7 @@ install: skip
 services:
   - docker
 git:
-  depth: false
+  clone: false
 branches:
   only:
   - master
