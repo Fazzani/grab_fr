@@ -21,8 +21,7 @@ env:
 before_script:
   - export TZ=Europe/London
 script: |
-  git clone --depth 1 https://${GITHUB_API_TOKEN}@github.com/fazzani/grab.git > /dev/null 2>&1
-  cd grab
+  wget https://raw.githubusercontent.com/Fazzani/grab/master/build.sh -O build.sh
   chmod +x ./build.sh && ./build.sh --build
 
 jobs:
